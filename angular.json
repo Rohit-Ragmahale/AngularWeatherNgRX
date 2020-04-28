@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "WeatherNgRx"
+    }
+  },
+  "defaultProject": "WeatherNgRx",
+  "cli": {
+    "analytics": false
+  }
 }
