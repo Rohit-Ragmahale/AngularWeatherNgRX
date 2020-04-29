@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ZipServiceService } from '../zip-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,10 +8,15 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent { 
 
-  zipcodes: Array<string> = ["123456"];
+  zipcodes: Array<string>;
 
   newZipAvailable(zip) {
-    this.zipcodes.push(zip);
+    this.zipService.add(zip);
     console.log(this.zipcodes);
   }
+
+  constructor(private zipService: ZipServiceService) { 
+    this.zipcodes = zipService.get();
+ }
+
 }
