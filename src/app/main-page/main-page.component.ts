@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ZipServiceService } from '../zip-service.service';
+import { WeatherService } from '../weather.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,10 +9,31 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent { 
 
-  zipcodes: Array<string> = ["123456"];
+  zipcodes: Array<string>;
+  currentWeatherList = new Map();
 
-  newZipAvailable(zip) {
-    this.zipcodes.push(zip);
-    console.log(this.zipcodes);
+  newZipAvailable(zipcode) {
+    this.weather.loadCurrentWeather(zipcode).subscribe(data => {
+      this.addWeather(zipcode, data);
+    });
+    this.zipService.add(zipcode);
   }
+
+  addWeather(zipcode: string, data: any) {
+    this.weather.addWeather(zipcode, data);
+    this.currentWeatherList = this.weather.getCurrentWeatherList();
+  }
+
+  constructor(private zipService: ZipServiceService, private weather: WeatherService) { 
+    this.zipcodes = zipService.get();
+  }
+
+ zipRemoved(zip) {
+  console.log("main - zipRemoved");
+  this.zipService.remove(zip);
+  this.zipcodes = this.zipService.get();
+  this.weather.removeCurrentWeatherList(zip);
+  this.currentWeatherList = this.weather.getCurrentWeatherList();
+ }
+
 }

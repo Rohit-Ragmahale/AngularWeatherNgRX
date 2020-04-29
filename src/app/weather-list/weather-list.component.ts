@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { WeatherService } from '../weather.service';
+
 
 @Component({
   selector: 'my-weather-list',
@@ -6,9 +8,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./weather-list.component.css']
 })
 export class WeatherListComponent {
+  @Input() zipcodes: Array<String>;
+  @Input() currentWeatherData: Map<string, any>;
+  @Output() zipRemoved = new EventEmitter();
 
-  @Input() zipcodes: Array<string>;;
+  getConditions(zip) {
+    return this.currentWeatherData.get(zip);
+  }
+  
+  constructor(public weather: WeatherService) {
+  }
 
-  constructor() { }
+  zipRemove(zip) {
+    this.zipRemoved.emit(zip);
+  }
 
+  showForecast(zip) {
+    
+  }
 }

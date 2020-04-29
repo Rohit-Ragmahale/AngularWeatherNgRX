@@ -1,9 +1,9 @@
-<div class="wall"> 
+<div class="wall formContainer"> 
     <form [formGroup]="userForm" (submit)="addZipCode()">
     <label for="zip">Enter zip code</label>
     <input autocomplete="off" class="form-control" type="text" formControlName="zip" id="zip"  />
     <div textColor="red" class="alert alert-danger" *ngIf="userForm.controls.zip.hasError('pattern')">
-        Please enter valid zipcode with 6 digits only.
+        Please enter valid zipcode with 5 digits only.
     </div> 
     <br>
     <button class = "btn btn-primary" type="submit" [disabled] = "!userForm.valid" >Add NewZipCode</button>

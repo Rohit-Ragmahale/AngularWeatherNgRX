@@ -1,0 +1,19 @@
+.close {
+    cursor: pointer;
+}
+
+.listItem {
+    padding: 15px;
+    background-color: lightsteelblue;
+}
+
+.listItem-hover {
+    padding: 10px;
+    background-color: lightsalmon;
+}
+
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
