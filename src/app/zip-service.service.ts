@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ZipServiceService {
 
-  zipcodes: Array<string> = ["100000"];
+  private zipcodes: Array<string> = [];
   constructor() { }
 
   get() {
