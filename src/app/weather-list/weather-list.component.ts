@@ -15,7 +15,7 @@ export class WeatherListComponent {
   getConditions(zip) {
     return this.currentWeatherData.get(zip);
   }
-
+  
   constructor(public weather: WeatherService) {
   }
 
@@ -23,5 +23,7 @@ export class WeatherListComponent {
     this.zipRemoved.emit(zip);
   }
 
-  showForecast(zip) {}
+  showForecast(zip) {
+    
+  }
 }

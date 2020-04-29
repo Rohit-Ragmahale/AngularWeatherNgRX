@@ -1,4 +1,6 @@
 <div class="wall"> 
     <my-zip-entry (addZipcode)="newZipAvailable($event)"></my-zip-entry>
+    <br>
+    <br>
     <my-weather-list [zipcodes]="zipcodes" [currentWeatherData]="currentWeatherList" (zipRemoved)="zipRemoved($event)"></my-weather-list>
 </div> 

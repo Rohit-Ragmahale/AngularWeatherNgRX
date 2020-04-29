@@ -1,7 +1,7 @@
 <div>
-    <div *ngFor="let zip  of zipcodes" class="well flex" (click)="showForecast(zip)">
-      <div>
-        <h3>{{getConditions(zip)?.name}} ({{zip}})</h3>
+    <div  [appWeatherItem]="true" *ngFor="let zip  of zipcodes" class="well flex" (click)="showForecast(zip)">
+      <div   class="innerContent">
+        <h3>{{getConditions(zip)?.name}}({{zip}})</h3>
         <h4>Current conditions: {{getConditions(zip)?.weather[0].main}}</h4>
         <h4>Temperatures today:</h4>
         <p>
