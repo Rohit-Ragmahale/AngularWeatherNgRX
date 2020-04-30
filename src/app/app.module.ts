@@ -10,6 +10,10 @@ import { WeatherListComponent } from './weather-list/weather-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { WeatherItemDirective } from './weather-item.directive';
 import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+//import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,15 @@ import { ForecastsListComponent } from './forecasts-list/forecasts-list.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    })//,
+//    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent]
