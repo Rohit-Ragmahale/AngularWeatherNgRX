@@ -10,6 +10,16 @@ import { WeatherListComponent } from './weather-list/weather-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { WeatherItemDirective } from './weather-item.directive';
 import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { CurrentConditionEffects } from './effects/current-condition.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { Store } from '@ngrx/store';
+import { WeatherService } from './weather.service';
+import { ZipServiceService } from './zip-service.service';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -25,9 +35,19 @@ import { ForecastsListComponent } from './forecasts-list/forecasts-list.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers, 
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    EffectsModule.forRoot([CurrentConditionEffects]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [WeatherService, ZipServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
