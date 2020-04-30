@@ -18,7 +18,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
 import { WeatherService } from './weather.service';
-import { ZipServiceService } from './zip-service.service';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 @NgModule({
@@ -47,7 +46,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [WeatherService, ZipServiceService],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

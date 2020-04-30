@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ZipServiceService } from '../zip-service.service';
 import { WeatherService } from '../weather.service';
 import { Store } from '@ngrx/store';
 import { State, selectZipcodeList, selectCurrentConditionsMap } from '../reducers';
