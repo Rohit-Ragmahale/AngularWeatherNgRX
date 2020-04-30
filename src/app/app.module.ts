@@ -12,8 +12,14 @@ import { WeatherItemDirective } from './weather-item.directive';
 import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-//import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { CurrentConditionEffects } from './effects/current-condition.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { Store } from '@ngrx/store';
+import { WeatherService } from './weather.service';
+import { ZipServiceService } from './zip-service.service';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -36,10 +42,12 @@ import { reducers, metaReducers } from './reducers';
         strictStateImmutability: true,
         strictActionImmutability: true,
       }
-    })//,
-//    !environment.production ? StoreDevtoolsModule.instrument() : []
+    }),
+    EffectsModule.forRoot([CurrentConditionEffects]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [WeatherService, ZipServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
