@@ -9,6 +9,7 @@ import { ZipEntryComponent } from './zip-entry/zip-entry.component';
 import { WeatherListComponent } from './weather-list/weather-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import { WeatherItemDirective } from './weather-item.directive';
+import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WeatherItemDirective } from './weather-item.directive';
     MainPageComponent,
     ZipEntryComponent,
     WeatherListComponent,
-    WeatherItemDirective
+    WeatherItemDirective,
+    ForecastsListComponent
   ],
   imports: [
     BrowserModule,

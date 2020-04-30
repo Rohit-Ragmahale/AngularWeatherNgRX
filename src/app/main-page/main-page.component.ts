@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ZipServiceService } from '../zip-service.service';
 import { WeatherService } from '../weather.service';
 
@@ -7,10 +7,15 @@ import { WeatherService } from '../weather.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent { 
+export class MainPageComponent implements OnInit { 
 
   zipcodes: Array<string>;
   currentWeatherList = new Map();
+
+  ngOnInit(): void {
+    this.zipcodes = this.zipService.get();
+    this.currentWeatherList = this.weather.getCurrentWeatherList();
+  }
 
   newZipAvailable(zipcode) {
     this.weather.loadCurrentWeather(zipcode).subscribe(data => {
@@ -35,5 +40,4 @@ export class MainPageComponent {
   this.weather.removeCurrentWeatherList(zip);
   this.currentWeatherList = this.weather.getCurrentWeatherList();
  }
-
 }
